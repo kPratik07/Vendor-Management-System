@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "./ui/button";
 import { toast } from "../components/ui/useToast";
 import { Edit, Mail, MoreHorizontal, Loader2 } from "lucide-react";
 import { useState } from "react";
@@ -7,7 +7,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "./ui/dropdown-menu";
 
 export default function VendorTable({ vendors, onEdit }) {
   const [sendingEmails, setSendingEmails] = useState(new Set());

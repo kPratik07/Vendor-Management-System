@@ -1,4 +1,4 @@
-import { Input } from "@/components/ui/input";
+import { Input } from "./ui/Input";
 import { Search, Filter } from "lucide-react";
 
 export default function Filters({ filters, setFilters }) {
@@ -28,7 +28,7 @@ export default function Filters({ filters, setFilters }) {
           <option value="Diesel">Diesel</option>
         </select>
 
-        <select 
+        <select
           value={filters.type}
           onChange={(e) => setFilters({ ...filters, type: e.target.value })}
           className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
@@ -38,7 +38,7 @@ export default function Filters({ filters, setFilters }) {
           <option value="Temp">Temp</option>
         </select>
 
-        <select 
+        <select
           value={filters.status}
           onChange={(e) => setFilters({ ...filters, status: e.target.value })}
           className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
@@ -48,7 +48,7 @@ export default function Filters({ filters, setFilters }) {
           <option value="Inactive">Inactive</option>
         </select>
 
-        <select 
+        <select
           value={filters.region}
           onChange={(e) => setFilters({ ...filters, region: e.target.value })}
           className="flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
@@ -78,18 +78,25 @@ export default function Filters({ filters, setFilters }) {
       </div>
 
       {/* Clear Filters Button */}
-      {(filters.category || filters.type || filters.status || filters.region || filters.dateFrom || filters.dateTo) && (
+      {(filters.category ||
+        filters.type ||
+        filters.status ||
+        filters.region ||
+        filters.dateFrom ||
+        filters.dateTo) && (
         <div className="flex justify-end">
           <button
-            onClick={() => setFilters({
-              query: filters.query,
-              category: "",
-              type: "",
-              status: "",
-              region: "",
-              dateFrom: "",
-              dateTo: ""
-            })}
+            onClick={() =>
+              setFilters({
+                query: filters.query,
+                category: "",
+                type: "",
+                status: "",
+                region: "",
+                dateFrom: "",
+                dateTo: "",
+              })
+            }
             className="text-sm text-gray-600 hover:text-gray-900 flex items-center gap-1"
           >
             <Filter className="h-4 w-4" />

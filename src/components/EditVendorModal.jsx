@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "./ui/button";
+import { Input } from "./ui/Input";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
+} from "./ui/Dialog";
+import { Label } from "./ui/label";
 import { toast } from "./ui/useToast";
 
 export default function EditVendorModal({ vendor, onClose, onSave }) {
@@ -25,62 +25,62 @@ export default function EditVendorModal({ vendor, onClose, onSave }) {
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
     }
-    
+
     if (!formData.category) {
       newErrors.category = "Category is required";
     }
-    
+
     if (!formData.location.trim()) {
       newErrors.location = "Location is required";
     }
-    
+
     if (!formData.status) {
       newErrors.status = "Status is required";
     }
-    
+
     if (!formData.type) {
       newErrors.type = "Type is required";
     }
-    
+
     if (!formData.region) {
       newErrors.region = "Region is required";
     }
-    
+
     if (!formData.date) {
       newErrors.date = "Date is required";
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (validateForm()) {
       onSave(formData);
-      toast({ 
-        title: "Success", 
+      toast({
+        title: "Success",
         description: "Vendor updated successfully",
-        variant: "default"
+        variant: "default",
       });
     } else {
-      toast({ 
-        title: "Validation Error", 
+      toast({
+        title: "Validation Error",
         description: "Please fix the errors in the form",
-        variant: "destructive"
+        variant: "destructive",
       });
     }
   };
 
   const handleChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: "" }));
+      setErrors((prev) => ({ ...prev, [field]: "" }));
     }
   };
 
@@ -90,7 +90,7 @@ export default function EditVendorModal({ vendor, onClose, onSave }) {
         <DialogHeader>
           <DialogTitle>Edit Vendor</DialogTitle>
         </DialogHeader>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="id">Vendor ID</Label>
@@ -110,7 +110,9 @@ export default function EditVendorModal({ vendor, onClose, onSave }) {
               onChange={(e) => handleChange("name", e.target.value)}
               className={errors.name ? "border-red-500" : ""}
             />
-            {errors.name && <p className="text-red-500 text-xs">{errors.name}</p>}
+            {errors.name && (
+              <p className="text-red-500 text-xs">{errors.name}</p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -118,14 +120,18 @@ export default function EditVendorModal({ vendor, onClose, onSave }) {
             <select
               value={formData.category}
               onChange={(e) => handleChange("category", e.target.value)}
-              className={`flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${errors.category ? "border-red-500" : "border-gray-300"} bg-white`}
+              className={`flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                errors.category ? "border-red-500" : "border-gray-300"
+              } bg-white`}
             >
               <option value="">Select category</option>
               <option value="Electrical">Electrical</option>
               <option value="Mechanical">Mechanical</option>
               <option value="Diesel">Diesel</option>
             </select>
-            {errors.category && <p className="text-red-500 text-xs">{errors.category}</p>}
+            {errors.category && (
+              <p className="text-red-500 text-xs">{errors.category}</p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -136,7 +142,9 @@ export default function EditVendorModal({ vendor, onClose, onSave }) {
               onChange={(e) => handleChange("location", e.target.value)}
               className={errors.location ? "border-red-500" : ""}
             />
-            {errors.location && <p className="text-red-500 text-xs">{errors.location}</p>}
+            {errors.location && (
+              <p className="text-red-500 text-xs">{errors.location}</p>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -145,13 +153,17 @@ export default function EditVendorModal({ vendor, onClose, onSave }) {
               <select
                 value={formData.status}
                 onChange={(e) => handleChange("status", e.target.value)}
-                className={`flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${errors.status ? "border-red-500" : "border-gray-300"} bg-white`}
+                className={`flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                  errors.status ? "border-red-500" : "border-gray-300"
+                } bg-white`}
               >
                 <option value="">Select status</option>
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
               </select>
-              {errors.status && <p className="text-red-500 text-xs">{errors.status}</p>}
+              {errors.status && (
+                <p className="text-red-500 text-xs">{errors.status}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -159,13 +171,17 @@ export default function EditVendorModal({ vendor, onClose, onSave }) {
               <select
                 value={formData.type}
                 onChange={(e) => handleChange("type", e.target.value)}
-                className={`flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${errors.type ? "border-red-500" : "border-gray-300"} bg-white`}
+                className={`flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                  errors.type ? "border-red-500" : "border-gray-300"
+                } bg-white`}
               >
                 <option value="">Select type</option>
                 <option value="SAP">SAP</option>
                 <option value="Temp">Temp</option>
               </select>
-              {errors.type && <p className="text-red-500 text-xs">{errors.type}</p>}
+              {errors.type && (
+                <p className="text-red-500 text-xs">{errors.type}</p>
+              )}
             </div>
           </div>
 
@@ -174,7 +190,9 @@ export default function EditVendorModal({ vendor, onClose, onSave }) {
             <select
               value={formData.region}
               onChange={(e) => handleChange("region", e.target.value)}
-              className={`flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${errors.region ? "border-red-500" : "border-gray-300"} bg-white`}
+              className={`flex h-10 w-full items-center justify-between rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                errors.region ? "border-red-500" : "border-gray-300"
+              } bg-white`}
             >
               <option value="">Select region</option>
               <option value="North">North</option>
@@ -182,7 +200,9 @@ export default function EditVendorModal({ vendor, onClose, onSave }) {
               <option value="East">East</option>
               <option value="West">West</option>
             </select>
-            {errors.region && <p className="text-red-500 text-xs">{errors.region}</p>}
+            {errors.region && (
+              <p className="text-red-500 text-xs">{errors.region}</p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -194,16 +214,16 @@ export default function EditVendorModal({ vendor, onClose, onSave }) {
               onChange={(e) => handleChange("date", e.target.value)}
               className={errors.date ? "border-red-500" : ""}
             />
-            {errors.date && <p className="text-red-500 text-xs">{errors.date}</p>}
+            {errors.date && (
+              <p className="text-red-500 text-xs">{errors.date}</p>
+            )}
           </div>
 
           <div className="flex justify-end space-x-2 pt-4">
             <Button type="button" variant="outline" onClick={onClose}>
               Cancel
             </Button>
-            <Button type="submit">
-              Save Changes
-            </Button>
+            <Button type="submit">Save Changes</Button>
           </div>
         </form>
       </DialogContent>

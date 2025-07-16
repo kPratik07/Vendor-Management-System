@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { vendors as dummyVendors } from "@/utils/dummyData";
-import VendorTable from "@/components/VendorTable";
-import Filters from "@/components/Filters";
-import ActionBar from "@/components/ActionBar";
-import Pagination from "@/components/Pagination";
-import EditVendorModal from "@/components/EditVendorModal";
-import EmailHistory from "@/components/EmailHistory";
+import { vendors as dummyVendors } from "../utils/dummyData";
+import VendorTable from "../components/VendorTable";
+import Filters from "../components/Filters";
+import ActionBar from "../components/ActionBar";
+import Pagination from "../components/Pagination";
+import EditVendorModal from "../components/EditVendorModal";
+import EmailHistory from "../components/EmailHistory";
 
 export default function VendorList() {
   const [vendors, setVendors] = useState([]);
@@ -17,7 +17,7 @@ export default function VendorList() {
     status: "",
     region: "",
     dateFrom: "",
-    dateTo: ""
+    dateTo: "",
   });
   const [code, setCode] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,7 +30,7 @@ export default function VendorList() {
 
   useEffect(() => {
     let result = vendors;
-    
+
     if (filters.query) {
       const q = filters.query.toLowerCase();
       result = result.filter((v) =>
@@ -39,20 +39,27 @@ export default function VendorList() {
         )
       );
     }
-    
-    if (filters.category) result = result.filter((v) => v.category === filters.category);
+
+    if (filters.category)
+      result = result.filter((v) => v.category === filters.category);
     if (filters.type) result = result.filter((v) => v.type === filters.type);
-    if (filters.status) result = result.filter((v) => v.status === filters.status);
-    if (filters.region) result = result.filter((v) => v.region === filters.region);
-    
+    if (filters.status)
+      result = result.filter((v) => v.status === filters.status);
+    if (filters.region)
+      result = result.filter((v) => v.region === filters.region);
+
     if (filters.dateFrom) {
-      result = result.filter((v) => new Date(v.date) >= new Date(filters.dateFrom));
+      result = result.filter(
+        (v) => new Date(v.date) >= new Date(filters.dateFrom)
+      );
     }
-    
+
     if (filters.dateTo) {
-      result = result.filter((v) => new Date(v.date) <= new Date(filters.dateTo));
+      result = result.filter(
+        (v) => new Date(v.date) <= new Date(filters.dateTo)
+      );
     }
-    
+
     setFiltered(result);
     setCurrentPage(1);
   }, [vendors, filters]);
@@ -71,17 +78,21 @@ export default function VendorList() {
       <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
         <div className="bg-white rounded-lg shadow-sm border">
           <div className="px-6 py-4 border-b border-gray-200">
-            <h1 className="text-2xl font-bold text-gray-900">Vendor Management</h1>
-            <p className="text-gray-600 mt-1">Manage and view vendor information</p>
+            <h1 className="text-2xl font-bold text-gray-900">
+              Vendor Management
+            </h1>
+            <p className="text-gray-600 mt-1">
+              Manage and view vendor information
+            </p>
           </div>
-          
+
           <div className="p-6">
             <ActionBar code={code} setCode={setCode} vendors={filtered} />
             <div className="mt-6">
               <EmailHistory />
             </div>
             <Filters filters={filters} setFilters={setFilters} />
-            
+
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mt-6 mb-4">
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <span>Showing</span>
@@ -92,11 +103,11 @@ export default function VendorList() {
                 <span className="font-medium">{filtered.length}</span>
                 <span>entries</span>
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <span className="text-sm text-gray-600">Show:</span>
-                <select 
-                  value={entriesPerPage.toString()} 
+                <select
+                  value={entriesPerPage.toString()}
                   onChange={(e) => {
                     setEntriesPerPage(parseInt(e.target.value));
                     setCurrentPage(1);
@@ -111,9 +122,9 @@ export default function VendorList() {
                 <span className="text-sm text-gray-600">entries per page</span>
               </div>
             </div>
-            
+
             <VendorTable vendors={paginated} onEdit={setSelectedVendor} />
-            
+
             <div className="mt-6">
               <Pagination
                 currentPage={currentPage}
@@ -124,13 +135,17 @@ export default function VendorList() {
           </div>
         </div>
       </div>
-      
+
       {selectedVendor && (
         <EditVendorModal
           vendor={selectedVendor}
           onClose={() => setSelectedVendor(null)}
           onSave={(updatedVendor) => {
-            setVendors(vendors.map(v => v.id === updatedVendor.id ? updatedVendor : v));
+            setVendors(
+              vendors.map((v) =>
+                v.id === updatedVendor.id ? updatedVendor : v
+              )
+            );
             setSelectedVendor(null);
           }}
         />
