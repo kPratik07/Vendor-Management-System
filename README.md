@@ -41,15 +41,15 @@ A responsive and high-performance web application built with **React**, **Tailwi
 
 ## 🛠️ Tech Stack
 
-| Tech              | Usage                        |
-|-------------------|------------------------------|
-| ⚛️ React.js       | Frontend framework            |
-| ⚡ Vite.js         | Project setup & fast build    |
-| 🎨 Tailwind CSS   | Utility-first styling         |
-| 🧩 ShadCN UI      | Accessible, prebuilt UI       |
+| Tech               | Usage                        |
+|--------------------|------------------------------|
+| ⚛️ React.js        | Frontend framework            |
+| ⚡ Vite.js          | Project setup & fast build    |
+| 🎨 Tailwind CSS    | Utility-first styling         |
+| 🧩 ShadCN UI       | Accessible, prebuilt UI       |
 | 📦 react-hook-form | Form handling and validation |
-| 🔄 Zustand (or Redux) | (Optional) state management |
-| 📁 FileSaver.js    | For downloading CSV exports   |
+| 🔄 Zustand / Redux | (Optional) state management  |
+| 📁 FileSaver.js     | For downloading CSV exports   |
 
 ---
 
@@ -83,13 +83,35 @@ See the full log in `AI_USAGE.md`.
 
 ## ✨ Improvements Over Legacy System
 
-| Issue in Old System       | Improvement in This App                     |
-|---------------------------|---------------------------------------------|
-| Cluttered UI              | Clean layout with clear hierarchy           |
-| Poor mobile support       | Fully responsive design                     |
-| Performance lags (10K+)   | Debounced search, pagination                |
-| Inconsistent components   | Unified with ShadCN UI                      |
-| Lack of accessibility     | Screen reader & keyboard-friendly elements  |
+| Issue in Old System     | Improvement in This App                    |
+|--------------------------|--------------------------------------------|
+| Cluttered UI             | Clean layout with clear hierarchy          |
+| Poor mobile support      | Fully responsive design                    |
+| Performance lags (10K+)  | Debounced search, pagination               |
+| Inconsistent components  | Unified with ShadCN UI                     |
+| Lack of accessibility    | Screen reader & keyboard-friendly elements |
+
+---
+
+## 🧰 Setup Instructions
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/kPratik07/vendor-management-interface.git
+cd vendor-management-interface
+```
+
+### 2. Install dependencies
+```bash
+npm install
+```
+
+### 3. Run the development server
+```bash
+npm run dev
+```
+
+> The app will be available at `http://localhost:5173`
 
 ---
 
